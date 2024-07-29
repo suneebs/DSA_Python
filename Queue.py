@@ -33,3 +33,35 @@ while True:
     else:
         print("\nEnter correct choice!")
 
+# ----------------------------------------------------------------------------------------
+#using classes from collection
+
+import collections
+q=collections.deque()
+q.appendleft(10)
+q.appendleft(20)
+q.appendleft(30)
+print(q)
+print(q.pop())
+print(q.pop())
+print(q.pop())
+
+q.append(10)
+q.append(20)
+q.append(30)
+print(q)
+print(q.popleft())
+print(q.popleft())
+print(q.popleft())
+
+#using queue module
+import queue
+q=queue.Queue()
+q.put(10)
+q.put(20)
+q.put(30)
+print(q.queue)
+print(q.get())
+print(q.get())
+print(q.get())
+print(q.get(timeout=1))
