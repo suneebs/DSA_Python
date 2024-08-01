@@ -35,6 +35,21 @@ class linkedList:
 
     def add_pos(self,data):
         pos= int(input("Enter the position: "))
+        if pos==0:
+            self.add_begin(data)
+            return
+        temp=self.head
+        if temp == None:
+            print("List is empty")
+            return
+        i=1
+        while temp.ref is not None:
+            i+=1
+            temp=temp.ref
+        if pos>i:
+            print("position exceeded")
+            return
+
         temp=self.head
         for i in range(pos-1):
             temp=temp.ref
