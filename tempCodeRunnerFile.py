@@ -1,5 +1,3 @@
-
-# ll.add_begin(20)
-# ll.add_end(30)
-# ll.add_pos(40)
-# ll.print_LL()
+()
+# d.del_by_value(34)
+# d.print_for()
