@@ -1,4 +1,4 @@
-class BST():
+class BST:
     def __init__(self,key):
         self.key = key
         self.lchild = None
@@ -37,16 +37,45 @@ class BST():
                 self.rchild.search(data)
             else:
                 print("Node not found")
+    
+    # PreOrder
+    def preorder(self):
+        print(self.key,end=" ")
+        if self.lchild:
+            self.lchild.preorder()
+        if self.rchild:
+            self.rchild.preorder()
 
+    #inorder
+    def inorder(self):
+        if self.lchild:
+            self.lchild.inorder()
+        print(self.key,end=" ")
+        if self.rchild:
+            self.rchild.inorder()
 
+    #postorder
+    def postorder(self):
+        if self.lchild:
+            self.lchild.postorder()
+        if self.rchild:
+            self.rchild.postorder()
+        print(self.key,end=" ")
+
+        
 root = BST(None)
 # root.lchild = BST(5)
 # root.insert(20)
-list = [10,20,43,5,23,6,3,1,76,3]
+list = [10,6,3,1,6,98,3,7]
 for i in list:
     root.insert(i)
 root.search(1)
-
+print("PreOrder:")
+root.preorder()
+print("\nInOrder:")
+root.inorder()
+print("\nPostOrder:")
+root.postorder()
 # print(root.key)
 # print(root.lchild)
 # print(root.rchild)
