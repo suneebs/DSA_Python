@@ -62,6 +62,40 @@ class BST:
             self.rchild.postorder()
         print(self.key,end=" ")
 
+    #delete
+    def delete(self,val):
+        if self.key is None:
+            print("Tree is empty")
+            return
+        if val < self.key:
+            if self.lchild:
+                self.lchild = self.lchild.delete(val)
+            else:
+                print(f"{val} is not present in the tree")
+
+        elif val > self.key:
+            if self.rchild:
+                self.rchild = self.rchild.delete(val)
+            else:
+                print(f"{val} is not present in the tree")
+
+        else:
+            if self.lchild is None:
+                temp = self.rchild
+                self = None
+                return temp
+            if self.rchild is None:
+                temp = self.lchild
+                self = None
+                return temp
+            else:
+                node = self.rchild
+                while node.lchild:
+                    node = node.lchild
+                self.key = node.key
+                self.rchild = self.rchild.delete(node.key)
+
+        return(self)
         
 root = BST(None)
 # root.lchild = BST(5)
@@ -76,6 +110,9 @@ print("\nInOrder:")
 root.inorder()
 print("\nPostOrder:")
 root.postorder()
+root.delete(1)
+print()
+root.preorder()
 # print(root.key)
 # print(root.lchild)
 # print(root.rchild)
