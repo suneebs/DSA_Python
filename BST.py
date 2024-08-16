@@ -63,29 +63,41 @@ class BST:
         print(self.key,end=" ")
 
     #delete
-    def delete(self,val):
+    def delete(self,val,curr):
         if self.key is None:
             print("Tree is empty")
             return
         if val < self.key:
             if self.lchild:
-                self.lchild = self.lchild.delete(val)
+                self.lchild = self.lchild.delete(val,curr)
             else:
                 print(f"{val} is not present in the tree")
 
         elif val > self.key:
             if self.rchild:
-                self.rchild = self.rchild.delete(val)
+                self.rchild = self.rchild.delete(val,curr)
             else:
                 print(f"{val} is not present in the tree")
 
         else:
             if self.lchild is None:
                 temp = self.rchild
+                if curr == val:
+                    self.key = temp.key
+                    self.lchild = temp.lchild
+                    self.rchild = temp.rchild
+                    temp =None
+                    return
                 self = None
                 return temp
             if self.rchild is None:
                 temp = self.lchild
+                if curr == val:
+                    self.key = temp.key
+                    self.lchild = temp.lchild
+                    self.rchild = temp.rchild
+                    temp =None
+                    return
                 self = None
                 return temp
             else:
@@ -93,26 +105,37 @@ class BST:
                 while node.lchild:
                     node = node.lchild
                 self.key = node.key
-                self.rchild = self.rchild.delete(node.key)
+                self.rchild = self.rchild.delete(node.key,curr)
 
         return(self)
+    
+# counting number of nodes
+
+def count(node):
+    if node is None:
+        return 0
+    return 1 + count(node.lchild) + count(node.rchild)
         
 root = BST(None)
 # root.lchild = BST(5)
 # root.insert(20)
-list = [10,6,3,1,6,98,3,7]
+list = [10]
 for i in list:
     root.insert(i)
 root.search(1)
-print("PreOrder:")
+print("PreOrder:",end=' ')
 root.preorder()
-print("\nInOrder:")
+print("\nInOrder:",end=' ')
 root.inorder()
-print("\nPostOrder:")
+print("\nPostOrder:",end=' ')
 root.postorder()
-root.delete(1)
+# print("\n",count(root))
+if count(root) > 1:
+    root.delete(10,root.key)
+else:
+    print("Cannot perform delete operation")
 print()
-root.preorder()
+# root.preorder()
 # print(root.key)
 # print(root.lchild)
 # print(root.rchild)
