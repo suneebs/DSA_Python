@@ -15,6 +15,9 @@ def add_node(v):
             temp.append(0)
         graph.append(temp)
 
+        # Adjancy List :
+        graphList[v] = []
+
 def add_edge(v1,v2,cost):
     if v1 not in nodes:
         print(v1,"is not present in the graph")
@@ -26,6 +29,12 @@ def add_edge(v1,v2,cost):
         # 1 for unweighted, cost for weighted
         graph[index1][index2] =  cost  
         # graph[index2][index1] =  cost   [ for directed graph ]
+
+        # Adj. list:
+        list1=[v2,cost]
+        list2=[v1,cost]
+        # graphList[v1].append(v2) -- for unweighted graph
+        graphList[v1].append(list1)
    
 def print_graph():
     print(nodes)
@@ -38,6 +47,8 @@ def print_graph():
 node_count = 0
 nodes = []
 graph = []
+graphList ={}
+
 print("Before insertion: ")
 print_graph()
 add_node("A")
@@ -47,3 +58,5 @@ add_edge("A","B",10)
 add_edge("C","B",5)
 print("After insertion: ")
 print_graph()
+
+print(graphList)
