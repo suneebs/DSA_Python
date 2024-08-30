@@ -43,6 +43,20 @@ def print_graph():
             print(graph[i][j],end=" ")
         print()
 
+def delete_node(v):
+    global node_count
+    if v not in nodes:
+        print(v,"is not in graph")
+    else:
+        index1= nodes.index(v)
+        node_count = node_count - 1
+        nodes.pop(index1) # deleting from node list
+        # deleting row
+        graph.pop(index1)
+        # deleting column
+        for i in graph:
+            i.pop(index1)  
+
 
 node_count = 0
 nodes = []
@@ -60,3 +74,7 @@ print("After insertion: ")
 print_graph()
 
 print(graphList)
+
+print("After deletion")
+delete_node("A")
+print_graph()
