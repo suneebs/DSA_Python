@@ -57,6 +57,17 @@ def delete_node(v):
         for i in graph:
             i.pop(index1)  
 
+def delete_edge(v1,v2):
+    if v1 not in nodes:
+        print(v1,"is not in t he graph")
+    elif v2 not in nodes:
+        print(v2,"is not in t he graph")
+    else:
+        index1 = nodes.index(v1)
+        index2 = nodes.index(v2)
+        graph[index1][index2] = 0
+        # for undirected graph
+        # graph[index2][index1] = 0  
 
 node_count = 0
 nodes = []
@@ -69,6 +80,7 @@ add_node("A")
 add_node("B")
 add_node("C")
 add_edge("A","B",10)
+add_edge("A","C",30)
 add_edge("C","B",5)
 print("After insertion: ")
 print_graph()
@@ -76,5 +88,5 @@ print_graph()
 print(graphList)
 
 print("After deletion")
-delete_node("A")
+delete_edge("A","B")
 print_graph()
