@@ -57,6 +57,22 @@ def delete_node(v):
         for i in graph:
             i.pop(index1)  
 
+        # Delete in adj. list
+        graphList.pop(v)
+        for i in graphList:
+            list1 = graphList[i]
+
+            # for unweightwed graph
+            # if v in list1:
+            #     list1.remove(v)
+
+            # For weighted graph
+            for j in list1:
+                if v == j[0]:
+                    list1.remove(j)
+                    break
+
+                
 def delete_edge(v1,v2):
     if v1 not in nodes:
         print(v1,"is not in t he graph")
@@ -87,6 +103,9 @@ print_graph()
 
 print(graphList)
 
-print("After deletion")
-delete_edge("A","B")
-print_graph()
+print("After deletion:")
+# delete_edge("A","B")
+# print_graph()
+
+delete_node("B")
+print(graphList)
