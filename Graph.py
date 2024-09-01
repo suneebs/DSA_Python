@@ -73,17 +73,31 @@ def delete_node(v):
                     break
 
                 
-def delete_edge(v1,v2):
+def delete_edge(v1,v2,cost):
     if v1 not in nodes:
-        print(v1,"is not in t he graph")
+        print(v1,"is not in the graph")
     elif v2 not in nodes:
-        print(v2,"is not in t he graph")
+        print(v2,"is not in the graph")
     else:
         index1 = nodes.index(v1)
         index2 = nodes.index(v2)
         graph[index1][index2] = 0
         # for undirected graph
         # graph[index2][index1] = 0  
+
+        # deletion in adj. list 
+
+        if v2 in graphList[v1]:
+            graphList[v1].remove(v2)
+            # graphList[v2].remove(v1)  In undirected graph
+
+        # In weighted graph:
+        temp1 = [v2,cost]
+        # temp2 = [v1,cost] In undirected
+        if temp1 in graphList[v1]:
+            graphList[v1].remove(temp1)
+            # graphList[v2].remove(temp2)
+
 
 node_count = 0
 nodes = []
@@ -107,5 +121,8 @@ print("After deletion:")
 # delete_edge("A","B")
 # print_graph()
 
-delete_node("B")
+# delete_node("B")
+# print(graphList)
+
+delete_edge("C","B",5)
 print(graphList)
